@@ -11,6 +11,7 @@ class brewcask {
   $cask_room = "${cask_home}/Caskroom"
 
   homebrew::tap { 'caskroom/cask': }
+  homebrew::tap { 'caskroom/versions': }
 
   file { $cask_home:
     ensure => directory
@@ -24,7 +25,7 @@ class brewcask {
   }
 
   package { 'brew-cask':
-    require  => Homebrew::Tap['caskroom/cask'],
+    require  => Homebrew::Tap['caskroom/cask', 'caskroom/versions'],
     provider => homebrew
   }
 
